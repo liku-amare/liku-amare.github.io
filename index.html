@@ -3,13 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IPA Pronunciation Lookup</title>
+  <title>IPA አነባብ መፈለጊያ</title>
+  <style>
+    /* Styling for copy icon (optional) */
+    .copy-icon {
+      cursor: pointer;
+      margin-left: 5px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Enter a word:</h1>
+  <h1>ቃሉን እዚህ ያስገቡ:</h1>
   <input type="text" id="word-input" placeholder="Type your word here">
-  <button onclick="getPronunciation()">Get Pronunciation</button>
-  <p id="pronunciation"></p>
+  <button onclick="getPronunciation()">አስገባ</button>
+  <p id="pronunciation">
+    አነባብ (IPA):
+    <span class="copy-icon" onclick="copyToClipboard(document.getElementById('pronunciation').textContent)"></span>
+  </p>
 
   <script>
     let pronunciationDict = {}; // Empty dictionary to hold pronunciation data
@@ -22,17 +32,28 @@
     loadDictionary(); // Call on page load to fetch pronunciation data
 
     function getPronunciation() {
-    //   const word = document.getElementById("word-input").value.toLowerCase();
       const word = document.getElementById("word-input").value;
       let pronunciation = "";
+    // Option 1: Loop through characters
       for (let i = 0; i < word.length; i++) {
-        const letter = word[i]; // Access character at index i
+        const letter = word[i];
         pronunciation += pronunciationDict[letter] || "";
       }
-    //   for (let letter of word) {
-    //     pronunciation += pronunciationDict[letter] || ""; // Add IPA symbol if it exists
+
+      // Option 2: Use spread operator (modern Javascript)
+    //   for (let letter of [...word]) {
+    //     pronunciation += pronunciationDict[letter] || "";
     //   }
       document.getElementById("pronunciation").innerHTML = `Pronunciation (IPA): ${pronunciation}`;
+    }
+
+    // Function to copy text to clipboard (optional)
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        console.log("ውጤቱ ተቀድቶልዎታል!");
+      }, (err) => {
+        console.error("ውጤቱን መቅዳት አልተቻለም!", err);
+      });
     }
   </script>
 </body>
