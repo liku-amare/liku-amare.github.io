@@ -44,13 +44,13 @@
     //   for (let letter of [...word]) {
     //     pronunciation += pronunciationDict[letter] || "";
     //   }
-      document.getElementById("pronunciation").innerHTML = `Pronunciation (IPA): ${pronunciation}`;
+      document.getElementById("pronunciation").innerHTML = `አነባብ (IPA): ${pronunciation}`;
     }
 
     // Function to copy text to clipboard (optional)
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
-        console.log("ውጤቱ ተቀድቶልዎታል!");
+        console.log("ውጤቱ ተቀድቷል!");
       }, (err) => {
         console.error("ውጤቱን መቅዳት አልተቻለም!", err);
       });
