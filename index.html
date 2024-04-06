@@ -1,14 +1,35 @@
-<html>
-    <head>
-        <title>My Github Page</title>
-    </head>
-    <body>
-        <h1><center>Welcome to my Homepage Folks!</center></h1>
-        <p><center>
-            Hello People, nowadays things are getting a bit harsh because of several bad sitiations
-            such as COVID-19 natural disasters, political conflicts social media and so on. But don't 
-            lose hope. God has plans for every thing. He will make things better when it's time. As the 
-            wise King Solomon once said, 'There is time for everything.' 
-        </center></p>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPA Pronunciation Lookup</title>
+</head>
+<body>
+  <h1>Enter a word:</h1>
+  <input type="text" id="word-input" placeholder="Type your word here">
+  <button onclick="getPronunciation()">Get Pronunciation</button>
+  <p id="pronunciation"></p>
+
+  <script>
+    let pronunciationDict = {}; // Empty dictionary to hold pronunciation data
+
+    async function loadDictionary() {
+      const response = await fetch('ipa_dict.json'); // Replace 'pronunciations.json' with your file path
+      pronunciationDict = await response.json();
+    }
+
+    loadDictionary(); // Call on page load to fetch pronunciation data
+
+    function getPronunciation() {
+    //   const word = document.getElementById("word-input").value.toLowerCase();
+      const word = document.getElementById("word-input");
+      let pronunciation = "";
+      for (let letter of word) {
+        pronunciation += pronunciationDict[letter] || ""; // Add IPA symbol if it exists
+      }
+      document.getElementById("pronunciation").innerHTML = `Pronunciation (IPA): ${pronunciation}`;
+    }
+  </script>
+</body>
 </html>
