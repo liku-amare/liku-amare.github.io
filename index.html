@@ -23,7 +23,7 @@
 
     function getPronunciation() {
     //   const word = document.getElementById("word-input").value.toLowerCase();
-      const word = document.getElementById("word-input");
+      const word = document.getElementById("word-input").value;
       let pronunciation = "";
       for (let i = 0; i < word.length; i++) {
         const letter = word[i]; // Access character at index i
