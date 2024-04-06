@@ -25,9 +25,13 @@
     //   const word = document.getElementById("word-input").value.toLowerCase();
       const word = document.getElementById("word-input");
       let pronunciation = "";
-      for (let letter of word) {
-        pronunciation += pronunciationDict[letter] || ""; // Add IPA symbol if it exists
+      for (let i = 0; i < word.length; i++) {
+        const letter = word[i]; // Access character at index i
+        pronunciation += pronunciationDict[letter] || "";
       }
+    //   for (let letter of word) {
+    //     pronunciation += pronunciationDict[letter] || ""; // Add IPA symbol if it exists
+    //   }
       document.getElementById("pronunciation").innerHTML = `Pronunciation (IPA): ${pronunciation}`;
     }
   </script>
