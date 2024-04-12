@@ -4,57 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IPA አነባብ መፈለጊያ</title>
-  <style>
-    /* Styling for copy icon */
-    .copy-icon {
-      cursor: pointer;
-      width: 20px;
-      height: 20px;
-      background-image: url("copy_icon.png"); /* Replace with your image path */
-      background-repeat: no-repeat;
-      background-position: center;
-      margin-left: 5px;
-    }
-  </style>
+  <link rel="stylesheet" href="./PronunciationLookup.css">
 </head>
 <body>
-  <h1>ቃል ያስገቡ:</h1>
-  <input type="text" id="word-input" placeholder="ቃሉን እዚህ ይጻፉ">
-  <button onclick="getPronunciation()">አስገባ</button>
-  <p id="pronunciation">
-    አነባብ (IPA):
-    <span class="copy-icon" onclick="copyToClipboard(document.getElementById('pronunciation').textContent)"></span>
-  </p>
+  <div class="pronunciation-lookup">
+    <h1>ቃል ያስገቡ:</h1>
+    <input type="text" id="word-input" placeholder="ቃሉን እዚህ ይጻፉ">
+    <button onclick="getPronunciation()">አስገባ</button>
+    <div class="container">
+      <!-- <label for="result-text-box">Enter Text:</label> -->
+      <input type="text" id="result-text-box" disabled>
+      <img src="./copy_icon.png" onclick="copyToClipboard()" alt="ቅዳ" class="copy_icon"></img>
+    </div>
+  </div>
 
   <script>
-    let pronunciationDict = {}; // Empty dictionary to hold pronunciation data
+    // Empty dictionary to hold pronunciation data
+    let pronunciationDict = {};
+    // let pronunciationDict = {
+    //   "ሀ": "ha",
+    //   "ሁ": "hu"
+    // }; 
 
     async function loadDictionary() {
-      const response = await fetch('ipa_dict.json'); // Replace 'pronunciations.json' with your file path
+      const response = await fetch('ipa_dict.json');
       pronunciationDict = await response.json();
     }
-
-    loadDictionary(); // Call on page load to fetch pronunciation data
-
+    loadDictionary(); 
+    
+    let pronunciation = "";
     function getPronunciation() {
+      pronunciation = "";
       const word = document.getElementById("word-input").value;
-      let pronunciation = "";
-    // Option 1: Loop through characters
       for (let i = 0; i < word.length; i++) {
         const letter = word[i];
         pronunciation += pronunciationDict[letter] || "";
       }
-
-      // Option 2: Use spread operator (modern Javascript)
-    //   for (let letter of [...word]) {
-    //     pronunciation += pronunciationDict[letter] || "";
-    //   }
-      document.getElementById("pronunciation").innerHTML = `አነባብ (IPA): ${pronunciation}`;
+      const pronResult = document.getElementById("result-text-box");
+      pronResult.value = pronunciation;
     }
 
-    // Function to copy text to clipboard (optional)
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
+    // Function to copy text to clipboard
+    function copyToClipboard() {
+      const icon = document.getElementById("green_tick");
+      navigator.clipboard.writeText(pronunciation).then(() => {
         console.log("ውጤቱ ተቀድቷል!");
       }, (err) => {
         console.error("ውጤቱን መቅዳት አልተቻለም!", err);

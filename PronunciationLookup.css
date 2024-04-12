@@ -1,0 +1,61 @@
+.pronunciation-lookup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 500px;
+  }
+  
+  .pronunciation-lookup h1 {
+    margin-bottom: 10px;
+  }
+  
+  .pronunciation-lookup input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .pronunciation-lookup button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .pronunciation-lookup button:hover {
+    background-color: #222;
+  }
+  
+  .pronunciation-lookup p {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .pronunciation-lookup .container {
+    display: flex; /* Arranges elements horizontally */
+    align-items: center; /* Aligns vertically */
+    padding: 5px;
+  }
+  
+  #result-text-box {
+    margin-right: 10px; /* Add spacing between text box and button */
+    padding: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .pronunciation-lookup .copy_icon {
+    width: 8%;
+    height: 8%;
+    cursor: pointer;
+  }
