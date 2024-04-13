@@ -21,10 +21,6 @@
   <script>
     // Empty dictionary to hold pronunciation data
     let pronunciationDict = {};
-    // let pronunciationDict = {
-    //   "ሀ": "ha",
-    //   "ሁ": "hu"
-    // }; 
 
     async function loadDictionary() {
       const response = await fetch('ipa_dict.json');
@@ -38,6 +34,9 @@
       const word = document.getElementById("word-input").value;
       for (let i = 0; i < word.length; i++) {
         const letter = word[i];
+        if (letter == " "){
+          pronunciation += " ";
+        }
         pronunciation += pronunciationDict[letter] || "";
       }
       const pronResult = document.getElementById("result-text-box");
