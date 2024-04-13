@@ -27,6 +27,13 @@
       pronunciationDict = await response.json();
     }
     loadDictionary(); 
+
+    const inputBar = document.getElementById('word-input');
+    inputBar.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        getPronunciation();        
+      }
+    });
     
     let pronunciation = "";
     function getPronunciation() {
